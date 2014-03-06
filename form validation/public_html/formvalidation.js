@@ -272,3 +272,71 @@ else if(dateConfirmedPositive<hivDiscovered)
     return false;
 }
 }
+//kip edit
+
+function whostage37(id1,id2)
+{
+     var start = document.getElementById(id1).value;
+     var eligibility = document.getElementById(id2).value;
+     
+     var day = convertDay(start);
+    var month = convertMonth(start);
+    var year = convertYear(start);
+
+var day1 = convertDay(eligibility);
+    var month1 = convertMonth(eligibility);
+    var year1 = convertYear(eligibility);
+    
+    var startDate = day+((month/12)*365)+(year*365);
+   
+    var eligibilityDate = day1+((month1/12)*365)+(year1*365);
+        if( startDate!== eligibilityDate){
+            document.getElementById(id+"Info").innerHTML = "WHO Stage at Start of ART is contradicting eligibility WHO Stage";
+                    return false;
+        }
+    
+}
+function regimen38(id1,id2)
+{
+     var fstline = document.getElementById(id1).value;
+     var scndline = document.getElementById(id2).value;
+     
+     var day = convertDay(fstline);
+    var month = convertMonth(fstline);
+    var year = convertYear(fstline);
+
+var day1 = convertDay( scndline);
+    var month1 = convertMonth( scndline);
+    var year1 = convertYear(scndline);
+    
+    var fstlineDate = day+((month/12)*365)+(year*365);
+   
+    var scndlineDate = day1+((month1/12)*365)+(year1*365);
+        if( scndlineDate < fstlineDate){
+            document.getElementById(id+"Info").innerHTML = "Started Second Line Regimen before First Line Regimen";
+                    return false;
+        }
+    
+}
+
+function regimen39(id)
+{
+    
+    var content = document.getElementById(id).value;
+
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var totalDate = day+((month/12)*365)+(year*365);
+    var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+dateToday.getDay();
+
+    if(date-totalDate<1)
+    {
+        document.getElementById(id+"Info").innerHTML = "Started Second Line Regimen is after Today";
+        return false;
+    }
+
+
+}
+
