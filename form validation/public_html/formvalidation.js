@@ -12,12 +12,12 @@ var dateToday = new Date();
 
 function convertDay(aDate)
 {
-     return aDay = aDate[3]+aDate[4];
+    return aDay = aDate[3]+aDate[4];
 }
 
 function convertMonth(aDate)
 {
-     return aMonth = aDate[0]+aDate[1];
+    return aMonth = aDate[0]+aDate[1];
 }
 
 function convertYear(aDate)
@@ -29,7 +29,7 @@ function convertYear(aDate)
 
 function height(id)
 {
-     var content = document.getElementById(id).value;
+    var content = document.getElementById(id).value;
 
     if(content<30 || content>180)
     {
@@ -77,7 +77,7 @@ function age(id,dob)
 
     var yearDOB = convertYear(dob);
 
-    var year = (dateToday.getFullYear())-age;   //year minus age
+    var year = (dateToday.getFullYear())-age; //year minus age
 
     if(yearDOB-year>1 || yearDOB-year<1)
     {
@@ -124,18 +124,18 @@ function transferDate(id,dob)
 
     //transfer date is later than day today
     var date = dateToday.getFullYear() * 365 + (dateToday.getMonth() / 12) * 365 + dateToday.getDay();
-    else if(date<transferDate)
-    {
-        document.getElementById(id+"Info").innerHTML = "The Transfer Date is after Today";
-        return false;
-    }
+else if(date<transferDate)
+{
+    document.getElementById(id+"Info").innerHTML = "The Transfer Date is after Today";
+    return false;
+}
 
-    //later than date HIV was discovered
-    else if(hivDiscovered>transferDate)
-    {
-        document.getElementById(id+"Info").innerHTML = "The Transfer Date is before the HIV case was Discovered";
-        return false;
-    }
+//later than date HIV was discovered
+else if(hivDiscovered>transferDate)
+{
+    document.getElementById(id+"Info").innerHTML = "The Transfer Date is before the HIV case was Discovered";
+    return false;
+}
 }
 
 function artDate(id,dob)
@@ -162,18 +162,18 @@ function artDate(id,dob)
 
     //checking that art date is not after date today
     var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+dateToday.getDay();
-    else if(artDate>date)
-    {
-        document.getElementById(id+"Info").innerHTML = "Date Started ART is after Today";
-        return false;
-    }
+else if(artDate>date)
+{
+    document.getElementById(id+"Info").innerHTML = "Date Started ART is after Today";
+    return false;
+}
 
-    //checking that art date is not before discovery of hiv
-    else if(artDate<hivDiscovered)
-    {
-        document.getElementById(id+"Info").innerHTML = "Date Started ART is before the HIV case was Discovered";
-        return false;
-    }
+//checking that art date is not before discovery of hiv
+else if(artDate<hivDiscovered)
+{
+    document.getElementById(id+"Info").innerHTML = "Date Started ART is before the HIV case was Discovered";
+    return false;
+}
 }
 
 function dateEnrolledInHiv(id,dob,dateConfirmedPositive)
@@ -207,28 +207,28 @@ function dateEnrolledInHiv(id,dob,dateConfirmedPositive)
 
     //checking that enrolled date is not after date today
     var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+dateToday.getDay();
-    else if(enrolledDate>date)
-    {
+else if(enrolledDate>date)
+{
     document.getElementById(id+"Info").innerHTML = "Date Enrolled in HIV Care is after Today";
     return false;
-    }
-
-//checking that enrolled date is not before discovery of hiv
-    else if(enrolledDate<hivDiscovered)
-    {
-        document.getElementById(id+"Info").innerHTML = "Date Enrolled in HIV Care is before the HIV case was Discovered";
-        return false;
-    }
-
-    //checking that enrolled date is not before they were discovered hiv positive
-    else if(enrolledDate<dateConfirmedPositive)
-    {
-        document.getElementById(id+"Info").innerHTML = "Date Enrolled in HIV Care is before Date Confirmed HIV+";
-        return false;
-    }
 }
 
-function dateConfifrmedHiv(id,dob)
+//checking that enrolled date is not before discovery of hiv
+else if(enrolledDate<hivDiscovered)
+{
+    document.getElementById(id+"Info").innerHTML = "Date Enrolled in HIV Care is before the HIV case was Discovered";
+    return false;
+}
+
+//checking that enrolled date is not before they were discovered hiv positive
+else if(enrolledDate<dateConfirmedPositive)
+{
+    document.getElementById(id+"Info").innerHTML = "Date Enrolled in HIV Care is before Date Confirmed HIV+";
+    return false;
+}
+}
+
+function dateConfifrmedHiv(id,dob,dateEnrolled)
 {
     //checking that date started ART is after dob
     var content = document.getElementById(id).value;//date confirmed +ve
@@ -244,16 +244,24 @@ function dateConfifrmedHiv(id,dob)
 
     var DoB = day+((month/12)*365)+(year*365);//date of birth
 
+    day = convertDay(dateEnrolled);
+    month = convertMonth(dateEnrolled);
+    year = convertYear(dateEnrolled);
+
+    dateEnrolled = day+((month/12)*365)+(year*365);//date of birth
+
     //checking that date confirmed positive is after date of birth
     if(dateConfirmedPositive<DoB)
     {
         document.getElementById(id+"Info").innerHTML = "Date Confirmed HIV+ is before Date of Birth";
         return false;
     }
-
-    /*
-        Specification 17,date enrolled comes before or after confirmation
-     */
+    //checking the enrolled date is after date confirmed positive
+    else if(dateConfirmedPositive>dateEnrolled)
+    {
+        document.getElementById(id+"Info").innerHTML = "Date Confirmed HIV+ is after date Enrolled in HIV Care";
+        return false;
+    }
 
 
     //checking that date is not after date today
@@ -272,4 +280,180 @@ function dateConfifrmedHiv(id,dob)
         return false;
     }
 }
+
+
+function artEligibility(id,dob,dateConfirmedPositive,dateEnrolled)
+{
+    var content = document.getElementById(id).value;//ART eligibility date
+
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var artEligibilityDate = day+((month/12)*365)+(year*365);//eligible date
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+    day = convertDay(dateConfirmedPositive);
+    month = convertMonth(dateConfirmedPositive);
+    year = convertYear(dateConfirmedPositive);
+
+    dateConfirmedPositive = day+((month/12)*365)+(year*365);//date confirmed positive
+
+    day = convertDay(dateEnrolled);
+    month = convertMonth(dateEnrolled);
+    year = convertYear(dateEnrolled);
+
+    dateEnrolled = day+((month/12)*365)+(year*365);//date enrolled
+
+    //checking that isn't before date of birth
+    if(artEligibilityDate<DoB)
+    {
+        document.getElementById(id+"Info").innerHTML = "ART Eligibility Date is before the Date of Birth";
+        return false;
+    }
+
+    //checking that it isnt before date confirmed positive
+    else if(artEligibilityDate<dateConfirmedPositive)
+    {
+        document.getElementById(id+"Info").innerHTML = "ART Eligibility Date is before Date Confirmed HIV+";
+        return false;
+    }
+
+    //checking it isnt before enrolled date
+    else if(artEligibilityDate<dateEnrolled)
+    {
+        document.getElementById(id+"Info").innerHTML = "ART Eligibility Date is before date Enrolled in HIV Care";
+        return false;
+    }
+
+    //checking it isnt after today
+    var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+dateToday.getDay();
+    else if(artEligibilityDate>date)
+    {
+        document.getElementById(id+"Info").innerHTML = "ART Eligibility Date is after Today";
+        return false;
+    }
+
+    //checking it isn't before hiv was discovered
+    else if(artEligibilityDate<hivDiscovered)
+    {
+        document.getElementById(id+"Info").innerHTML = "ART Eligibility Date is before the HIV case was Discovered";
+        return false;
+    }
+}
+
+function WHO(eligibility_WHO_Stage,enrolment_WHO_Stage)
+{
+    if(eligibility_WHO_Stage!=enrolment_WHO_Stage)
+    {
+        alert("Eligibility WHO Stage is contradicting Enrolment WHO Stage");
+    }
+}
+
+function CD4(CD4value,age)
+{
+
+    //ask about the specifications step 27
+
+    if(CD4value>7000 && age<13)
+    {
+        alert("CD4 is above Normal for a Patient below 13 Years");
+    }
+
+    else if(CD4value>1500 && age>12)
+    {
+        alert("CD4 is above Normal for a Patient above 12 Years");
+    }
+
+    else if(CD4value<0)
+    {
+        alert("CD4 is below Zero");
+    }
+
+}
+
+function CD4Percentage(CD4Perc)
+{
+    if(CD4Perc>100)
+    {
+        alert("CD4 Percentage is above 100%");
+    }
+
+    else if(CD4Perc>24)
+    {
+        alert("The CD4 Percentage is greater than the required % for Starting ARVs (24%)");
+    }
+
+    else if(CD4Perc<0)
+    {
+        alert("CD4 Percentage is below Zero");
+    }
+
+}
+
+
+//ask how to determine eligibility of a patience for regimen
+function regimen(FLRegimen,DMEligible,DLUsed,dateConfirmedpositive)
+{
+    var day = convertDay(FLRegimen);
+    var month = convertMonth(FLRegimen);
+    var year = convertYear(FLRegimen);
+
+    FLRegimen = day+((month/12)*365)+(year*365);//date for First Line Regimen
+
+    day = convertDay(DMEligible);
+    month = convertMonth(DMEligible);
+    year = convertYear(DMEligible);
+
+    DMEligible = day+((month/12)*365)+(year*365);//date for Date Medically Eligible
+
+    day = convertDay(DLUsed);
+    month = convertMonth(DLUsed);
+    year = convertYear(DLUsed);
+
+    DLUsed = day+((month/12)*365)+(year*365);//date for Date Last Used
+
+    day = convertDay(dateConfirmedpositive);
+    month = convertMonth(dateConfirmedpositive);
+    year = convertYear(dateConfirmedpositive);
+
+    dateConfirmedpositive = day+((month/12)*365)+(year*365);//date confirmed positive
+
+    if(FLRegimen<DMEligible)
+    {
+        alert("Date Started First Line Regimen is before Date Medically Eligible");
+    }
+
+    //checking date not to be after date today
+    var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+dateToday.getDay();
+    else if(FLRegimen>date)
+    {
+        alert("Date Started First Line Regimen is after Today");
+    }
+
+    //checking that First Line date isn't after date last used
+    else if(FLRegimen>DLUsed)
+    {
+        alert("The Date ART Started is after the Date Last Used");
+    }
+
+    //checking date confirmed hiv +ve
+    else if(FLRegimen<dateConfirmedpositive)
+    {
+        alert("Date Started First Line Regimen is before Date Confirmed HIV+");
+    }
+
+    //checking that it isnt before date hiv was discovered
+    else if(FLRegimen<hivDiscovered)
+    {
+        alert("Date Started First Line Regimen is before the HIV case was Discovered");
+    }
+}
+
+
 
