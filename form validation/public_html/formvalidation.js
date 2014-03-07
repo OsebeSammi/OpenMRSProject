@@ -12,19 +12,18 @@ var dateToday = new Date();
 
 function convertDay(aDate)
 {
-    return aDay = aDate[3]+aDate[4];
+    return aDay = Number(aDate[3]+aDate[4]);
 }
 
 function convertMonth(aDate)
 {
-    return aMonth = aDate[0]+aDate[1];
+    return aMonth = Number(aDate[0]+aDate[1]);
 }
 
 function convertYear(aDate)
 {
-    return aYear = aDate[6]+aDate[7]+aDate[8]+aDate[9];
+    return aYear = Number(aDate[6]+aDate[7]+aDate[8]+aDate[9]);
 }
-
 
 
 function height(value)
