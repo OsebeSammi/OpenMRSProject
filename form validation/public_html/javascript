@@ -1,0 +1,329 @@
+  $(document).ready(function() {
+
+
+        //When page loads...
+        $(".tab_content").hide(); //Hide all content
+        $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+        $(".tab_content:first").show(); //Show first tab content
+
+        //On Click Event
+        $("ul.tabs li").click(function() {
+            $("ul.tabs li").removeClass("active"); //Remove any "active" class
+            $(this).addClass("active"); //Add "active" class to selected tab
+            $(".tab_content").hide(); //Hide all tab content
+
+            var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+            $(activeTab).fadeIn(); //Fade in the active ID content
+            return false;
+        });
+
+        $("ul.tabs_visit_form2 li").click(function() {
+            $("ul.tabs li:first").removeClass("active"); //Remove any "active" class
+            $("ul.tabs li:eq(1)").addClass("active").show(); //Activate second tab
+            $(".tab_content:eq(1)").show(); //Show second tab content
+            $(this).addClass("active"); //Add "active" class to selected tab
+            $(".tab_content").hide(); //Hide all tab content
+
+            var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+            $(activeTab).fadeIn(); //Fade in the active ID content
+            return false;
+        });
+
+   beforeSubmit.push(function() {
+
+ //$("#try").append("dvsdfgsdf");
+ 
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('height.value');
+ if(value!="")
+ {
+     getField('height.error').html(height(value)).show();
+ }
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('weight.value');
+ if(value!="")
+ {
+     getField('weight.error').html(weight(value)).show();
+ }
+ 
+ });
+ 
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('fpStatus.value');
+ var age = getValue('age.value');
+ if(age!=null)
+ {  
+     if(value!="")
+     {
+         getField('fpStatus.error').html(fp64(age,value)).show();
+     }
+     
+ }
+ 
+ //setValue('weight.value', "90");
+ 
+ });
+ 
+ 
+
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('pg.value');
+ var age = getValue('age.value');
+ 
+ if(age!=null)
+ {
+     if(value!="")
+     {   
+         
+         getField('pg.error').html(pg61(age,value)).show();
+     }
+ }
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4p.value');
+ if(value!="")
+ {
+     getField('cd4p.error').html(CD4Percentage(value)).show();
+ }
+ 
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4c.value');
+ var age = getValue('age.value');
+ 
+ if(value!="")
+ {
+     if(age!=null)
+     {
+         getField('cd4c.error').html(CD4(value,age)).show();
+     }
+     
+ }
+ 
+ });
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var currentVisit = getValue('currentVisit.value');
+ var next = getValue('next.value');
+ 
+ 
+ 
+ if(next!="")
+ {
+     if(currentVisit!="")
+     { 
+         alert(currentVisit+" "+next);
+         getField('next.error').html(nxtvisit71(next,currentVisit)).show();
+     }
+     
+ }
+ 
+ });
+ 
+});
+
+    });
+
+
+
+    //validation
+    //date of HIV
+
+
+    function convertDay(aDate)
+    {
+        return aDay = Number(aDate[8]+aDate[9])-2;
+    }
+
+    function convertMonth(aDate)
+    {
+        return aMonth = Number(aDate[5]+aDate[6])-1;
+    }
+
+    function convertYear(aDate)
+    {
+        return aYear = Number(aDate[0]+aDate[1]+aDate[2]+aDate[3]);
+    }
+
+
+   /* function visitDate(id)
+    {
+
+        var dateToday = new Date();
+
+        var content = document.getElementById(id).value;
+
+
+        var day = convertDay(content);
+        var month = convertMonth(content);
+        var year = convertYear(content);
+
+        var totalDate = day+((month/12)*365)+(year*365);
+        var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+(dateToday.getDay());
+
+
+
+        if(totalDate > date)
+        {
+
+            document.getElementById(id+"Info").style.backgroundColor = "palevioletred";
+            document.getElementById(id+"Info").innerHTML="<p>visit date is after today</p>";
+            return false;
+        }
+
+        else
+        {
+            document.getElementById(id+"Info").style.backgroundColor = "";
+            document.getElementById(id+"Info").innerHTML="";
+        }
+    }*/
+
+
+    function height(value)
+    {
+        var content = value;
+    
+      
+        if(30>content)
+        {
+            return "The Height in Cms is outside the Normal Range";
+        }
+        if(content>180)
+        {
+            return "The Height in Cms is outside the Normal Range";
+        }
+    
+    }
+    function weight(value)
+{
+    var content =value;
+
+    if(3>content)
+    {
+       
+        return "The Weight in Kgs is outside the Normal Range";
+    }
+      if(content>150)
+        {
+            return "The Weight in Kgs is outside the Normal Range";
+        }
+}
+//how to to get age
+function fp64(value,fpstatus)
+ {
+      var age = value;
+     
+
+
+         if(age&lt;15)
+    {
+        if(fpstatus==="true")
+        {
+                
+                return "Is this Child on Family Planning?";
+        }
+        
+    }
+ }
+
+function pg61(value,pgstatus)
+ {
+      var age = value;
+      
+     if(age&lt;15)
+    {
+        if(pgstatus==="1065")
+        {
+                
+                return "Is this Child Pregnant?";
+        }
+        
+    }
+ }
+ 
+ 
+ function CD4Percentage(CD4Perc)
+{
+    if(CD4Perc>100)
+    {
+        return"CD4 Percentage is above 100%";
+    }
+
+    else if(CD4Perc>24)
+    {
+        return"The CD4 Percentage is greater than the required % for Starting ARVs (24%)";
+    }
+
+    else if(0>CD4Perc)
+    {
+        return"CD4 Percentage is below Zero";
+    }
+
+}
+
+
+
+function CD4(CD4value,age)
+{
+
+    //ask about the specifications step 27
+
+    if(CD4value>7000)
+    {
+        if(13>age)
+        {
+            return "CD4 is above Normal for a Patient below 13 Years";
+        }
+
+    }
+
+    else if(CD4value>1500)
+    {
+        if(age>12)
+        {
+            return "CD4 is above Normal for a Patient above 12 Years";
+        }
+
+    }
+
+    else if(0>CD4value)
+    {
+        return "CD4 is below Zero";
+    }
+
+}
+
+
+function nxtvisit71(visit,currvisit)
+ {
+     
+    
+    var day = convertDay(visit);
+    var month = convertMonth(visit);
+    var year = convertYear(visit);
+    
+    var day1 = convertDay(currvisit);
+    var month1 = convertMonth(currvisit);
+    var year1 = convertYear(currvisit);
+    
+    var visit = day+((month/12)*365)+(year*365);
+    var currvisit=day1+((month1/12)*365)+(year1*365);
+         if(visit &lt; currvisit)
+    {
+        return "The next Visit Date is before the current Visit Date";
+    }
+ }
