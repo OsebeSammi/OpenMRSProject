@@ -134,6 +134,7 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
 
+
         //When page loads...
         $(".tab_content").hide(); //Hide all content
         $("ul.tabs li:first").addClass("active").show(); //Activate first tab
@@ -162,6 +163,113 @@
             return false;
         });
 
+   beforeSubmit.push(function() {
+
+ //$("#try").append("dvsdfgsdf");
+ 
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('height.value');
+ if(value!="")
+ {
+     getField('height.error').html(height(value)).show();
+ }
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('weight.value');
+ if(value!="")
+ {
+     getField('weight.error').html(weight(value)).show();
+ }
+ 
+ });
+ 
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('fpStatus.value');
+ var age = getValue('age.value');
+ if(age!=null)
+ {  
+     if(value!="")
+     {
+         getField('fpStatus.error').html(fp64(age,value)).show();
+     }
+     
+ }
+ 
+ //setValue('weight.value', "90");
+ 
+ });
+ 
+ 
+
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('pg.value');
+ var age = getValue('age.value');
+ 
+ if(age!=null)
+ {
+     if(value!="")
+     {   
+         
+         getField('pg.error').html(pg61(age,value)).show();
+     }
+ }
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4p.value');
+ if(value!="")
+ {
+     getField('cd4p.error').html(CD4Percentage(value)).show();
+ }
+ 
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4c.value');
+ var age = getValue('age.value');
+ 
+ if(value!="")
+ {
+     if(age!=null)
+     {
+         getField('cd4c.error').html(CD4(value,age)).show();
+     }
+     
+ }
+ 
+ });
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var currentVisit = getValue('currentVisit.value');
+ var next = getValue('next.value');
+ 
+ 
+ 
+ if(next!="")
+ {
+     if(currentVisit!="")
+     { 
+         alert(currentVisit+" "+next);
+         getField('next.error').html(nxtvisit71(next,currentVisit)).show();
+     }
+     
+ }
+ 
+ });
+ 
+});
+
     });
 
 
@@ -172,21 +280,21 @@
 
     function convertDay(aDate)
     {
-        return aDay = Number(aDate[3]+aDate[4])-2;
+        return aDay = Number(aDate[8]+aDate[9])-2;
     }
 
     function convertMonth(aDate)
     {
-        return aMonth = Number(aDate[0]+aDate[1])-1;
+        return aMonth = Number(aDate[5]+aDate[6])-1;
     }
 
     function convertYear(aDate)
     {
-        return aYear = Number(aDate[6]+aDate[7]+aDate[8]+aDate[9]);
+        return aYear = Number(aDate[0]+aDate[1]+aDate[2]+aDate[3]);
     }
 
 
-    function visitDate(id)
+   /* function visitDate(id)
     {
 
         var dateToday = new Date();
@@ -216,37 +324,145 @@
             document.getElementById(id+"Info").style.backgroundColor = "";
             document.getElementById(id+"Info").innerHTML="";
         }
-    }
+    }*/
 
 
-    function height(id)
+    function height(value)
     {
-        var content = document.getElementById(id).value;
-
-        if(30>content || content>180)
+        var content = value;
+    
+      
+        if(30>content)
         {
-
-            return false;
+            return "The Height in Cms is outside the Normal Range";
         }
+        if(content>180)
+        {
+            return "The Height in Cms is outside the Normal Range";
+        }
+    
     }
+    function weight(value)
+{
+    var content =value;
 
-
-
-
-
-    function submitHtmlForm()
+    if(3>content)
     {
-        var submitThisForm = true;
-
-        //checking visit date
-        submitThisForm = visitDate("w7-display");
-        if(submitThisForm == false)
+       
+        return "The Weight in Kgs is outside the Normal Range";
+    }
+      if(content>150)
         {
-            alert("This form has not been correctly filled,review and submit");
-            return false;
+            return "The Weight in Kgs is outside the Normal Range";
         }
+}
+//how to to get age
+function fp64(value,fpstatus)
+ {
+      var age = value;
+     
+
+
+         if(age&lt;15)
+    {
+        if(fpstatus==="true")
+        {
+                
+                return "Is this Child on Family Planning?";
+        }
+        
+    }
+ }
+
+function pg61(value,pgstatus)
+ {
+      var age = value;
+      
+     if(age&lt;15)
+    {
+        if(pgstatus==="1065")
+        {
+                
+                return "Is this Child Pregnant?";
+        }
+        
+    }
+ }
+ 
+ 
+ function CD4Percentage(CD4Perc)
+{
+    if(CD4Perc>100)
+    {
+        return"CD4 Percentage is above 100%";
     }
 
+    else if(CD4Perc>24)
+    {
+        return"The CD4 Percentage is greater than the required % for Starting ARVs (24%)";
+    }
+
+    else if(0>CD4Perc)
+    {
+        return"CD4 Percentage is below Zero";
+    }
+
+}
+
+
+
+function CD4(CD4value,age)
+{
+
+    //ask about the specifications step 27
+
+    if(CD4value>7000)
+    {
+        if(13>age)
+        {
+            return "CD4 is above Normal for a Patient below 13 Years";
+        }
+
+    }
+
+    else if(CD4value>1500)
+    {
+        if(age>12)
+        {
+            return "CD4 is above Normal for a Patient above 12 Years";
+        }
+
+    }
+
+    else if(0>CD4value)
+    {
+        return "CD4 is below Zero";
+    }
+
+}
+
+
+function nxtvisit71(visit,currvisit)
+ {
+     
+    
+    var day = convertDay(visit);
+    var month = convertMonth(visit);
+    var year = convertYear(visit);
+    
+    var day1 = convertDay(currvisit);
+    var month1 = convertMonth(currvisit);
+    var year1 = convertYear(currvisit);
+    
+    var visit = day+((month/12)*365)+(year*365);
+    var currvisit=day1+((month1/12)*365)+(year1*365);
+         if(visit &lt; currvisit)
+    {
+        return "The next Visit Date is before the current Visit Date";
+    }
+ }
+
+ 
 </script>
 
 <div class="main">
@@ -280,7 +496,7 @@
                     <td >Patient Name:</td>
                     <td style="color: brown"> <lookup expression="patient.personName"/></td>
                     <td>Patient age:</td>
-                    <td style="color: brown"> <lookup expression="patient.personAge"/></td>
+                    <td style="color: brown"> <lookup id="age" expression="patient.personAge"/></td>
                 </tr>
             </table>
         </section>
@@ -290,8 +506,7 @@
             <table width="85%" align="center" class="maincopy">
                 <tr >
                     <td width="233" class="textalign_right">Visit Date:</td>
-                    <td width="265"><encounterDate labelText="Visit Date:"/></td>
-                    <td id="w7-displayInfo"></td>
+                    <td width="265"><encounterDate id="currentVisit" labelText="Visit Date:"/></td>
                     <td width="255" class="textalign_right">Visit type:</td>
                     <td width="309"><obs conceptId="160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
                 </tr>
@@ -306,20 +521,20 @@
                 </tr>
                 <tr >
                     <td class="textalign_right">Weight (kgs)/BP:</td>
-                    <td><obs conceptId="5089" size="5"/></td>
+                    <td><obs id="weight" conceptId="5089" size="5"/></td>
                     <td class="textalign_right">Height (cm):</td>
-                    <td><obs conceptId="5090" size="5"/></td>
+                    <td><obs id="height" conceptId="5090" size="5"/></td>
                 </tr>
                 <tr >
                     <td class="textalign_right">BMI:</td>
-                    <td><obs conceptId="1342" size="5"/></td>
+                    <td><obs id="bmi" conceptId="1342" size="5"/></td>
                 </tr>
                 <tr>
                     <td>Pregnancy</td>
                 </tr>
                 <tr >
                     <td class="textalign_right">Status:</td>
-                    <td><obs conceptId="5272" style="no_yes_dropdown" /></td>
+                    <td><obs id="pg" conceptId="5272" style="no_yes_dropdown" /></td>
                     <td class="textalign_right">EDD:</td>
                     <td><obs conceptId="5596" size="5"/></td>
                 </tr>
@@ -330,7 +545,7 @@
                     <td class="textalign_right">FP Status:</td>
                     <td><obs conceptId="160653" style="no_yes_dropdown" /></td>
                     <td class="textalign_right">FP/No FP:</td>
-                    <td><obs conceptId="965" style="no_yes_dropdown"/></td>
+                    <td><obs id="fpStatus" conceptId="965" style="no_yes_dropdown"/></td>
                 </tr>
                 <tr>
                     <td class="textalign_right">FP method:</td>
@@ -355,7 +570,7 @@
                 </tr>
                 <tr>
                     <td class="textalign_right">WHO Stage:</td>
-                    <td><obs conceptId="5356" /></td>
+                    <td><obs id="who" conceptId="5356" /></td>
                 </tr>
                 <tr>
                     <td>Cotrimozale</td>
@@ -421,8 +636,8 @@
             </tr>
             <tr >
 
-                <td class="textalign_right">CD4 Done (# or %):</td>
-                <td><obs conceptId="5497"  /></td>
+               <!-- <td class="textalign_right">CD4 Done (# or %):</td>
+                <td><obs id=conceptId="5497"  /></td>-->
                 <td class="textalign_right">CD4 Date:</td>
                 <td><encounterDate labelText="Visit Date:"/></td>
 
@@ -431,17 +646,17 @@
             <tr >
 
                 <td class="textalign_right">CD4 Count:</td>
-                <td><obs conceptId="5497"  /></td>
+                <td><obs id="cd4c" conceptId="5497"  /></td>
                 <td class="textalign_right">CD4 %:</td>
-                <td><obs  conceptId="730"  /></td>
+                <td><obs id="cd4p" conceptId="730"  /></td>
 
             </tr>
             <tr >
 
                 <td class="textalign_right">HGB:</td>
-                <td><obs conceptId="21"  /></td>
+                <td><obs id="hgb1" conceptId="21"  /></td>
                 <td class="textalign_right">HGB Result:</td>
-                <td><obs  conceptId="21"  /></td>
+                <td><obs id="hgb2" conceptId="21"  /></td>
 
             </tr>
             <tr >
@@ -476,7 +691,7 @@
             <tr >
 
                 <td class="textalign_right">Date of Next Appointment :</td>
-                <td><obs conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  /></td>
+                <td><obs id="next" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  /></td>
                 <td class="textalign_right">Clinician Initial:</td>
                 <td><obs  conceptId="1473"  /></td>
 
