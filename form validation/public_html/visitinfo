@@ -133,8 +133,8 @@
 </style>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-
-
+  
+ 
         //When page loads...
         $(".tab_content").hide(); //Hide all content
         $("ul.tabs li:first").addClass("active").show(); //Activate first tab
@@ -164,7 +164,8 @@
         });
 
    beforeSubmit.push(function() {
-
+    var submit = true;
+ //alert(submit+"1st");
  //$("#try").append("dvsdfgsdf");
  
 $j(function() {
@@ -173,6 +174,11 @@ $j(function() {
  if(value!="")
  {
      getField('height.error').html(height(value)).show();
+     if(height(value)!=null)
+     {
+      submit = false;   
+     }
+            
  }
  });
  
@@ -183,6 +189,10 @@ $j(function() {
  if(value!="")
  {
      getField('weight.error').html(weight(value)).show();
+      if(weight(value)!=null)
+     {
+      submit = false;   
+     }
  }
  
  });
@@ -196,6 +206,10 @@ $j(function() {
      if(value!="")
      {
          getField('fpStatus.error').html(fp64(age,value)).show();
+          if(fp64(age,value)!=null)
+     {
+      submit = false;   
+     }
      }
      
  }
@@ -217,17 +231,26 @@ $j(function() {
      {   
          
          getField('pg.error').html(pg61(age,value)).show();
+          if(pg61(age,value)!=null)
+     {
+      submit = false;   
+     }
      }
  }
  });
  
  
  $j(function() {
+   
  //setValue('weight.error',"*wrong input*");
  var value = getValue('cd4p.value');
  if(value!="")
  {
      getField('cd4p.error').html(CD4Percentage(value)).show();
+      if(CD4Percentage(value)!=null)
+     {
+      submit = false;   
+     }
  }
  
  });
@@ -243,6 +266,10 @@ $j(function() {
      if(age!=null)
      {
          getField('cd4c.error').html(CD4(value,age)).show();
+             if(CD4(value,age)!=null)
+     {
+      submit = false;   
+     }
      }
      
  }
@@ -260,14 +287,25 @@ $j(function() {
  {
      if(currentVisit!="")
      { 
-         alert(currentVisit+" "+next);
+         
          getField('next.error').html(nxtvisit71(next,currentVisit)).show();
+                  if(nxtvisit71(next,currentVisit)!=null)
+     {
+      submit = false;   
+     }
      }
      
  }
  
  });
  
+ if(submit == false)
+ {
+     alert("Some entries have been incorectly filled\nPlease review the form and resubmit");
+    
+ }
+ //alert(submit+"1ast");
+ return submit;
 });
 
     });
@@ -336,24 +374,30 @@ $j(function() {
         {
             return "The Height in Cms is outside the Normal Range";
         }
-        if(content>180)
+        else if(content>180)
         {
             return "The Height in Cms is outside the Normal Range";
+        }
+          else{
+            return null;
         }
     
     }
     function weight(value)
 {
-    var content =value;
+    var content = value;
 
     if(3>content)
     {
        
         return "The Weight in Kgs is outside the Normal Range";
     }
-      if(content>150)
+      else if(content>150)
         {
             return "The Weight in Kgs is outside the Normal Range";
+        }
+        else{
+            return null;
         }
 }
 //how to to get age
@@ -372,6 +416,9 @@ function fp64(value,fpstatus)
         }
         
     }
+        else{
+            return null;
+        }
  }
 
 function pg61(value,pgstatus)
@@ -387,6 +434,9 @@ function pg61(value,pgstatus)
         }
         
     }
+        else{
+            return null;
+        }
  }
  
  
@@ -406,6 +456,9 @@ function pg61(value,pgstatus)
     {
         return"CD4 Percentage is below Zero";
     }
+        else{
+            return null;
+        }
 
 }
 
@@ -438,7 +491,9 @@ function CD4(CD4value,age)
     {
         return "CD4 is below Zero";
     }
-
+    else{
+            return null;
+        }
 }
 
 
@@ -460,6 +515,9 @@ function nxtvisit71(visit,currvisit)
     {
         return "The next Visit Date is before the current Visit Date";
     }
+        else{
+            return null;
+        }
  }
 
  
