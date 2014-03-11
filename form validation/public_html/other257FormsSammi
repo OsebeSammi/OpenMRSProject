@@ -133,11 +133,12 @@
 
 </style>
 <script type="text/javascript" charset="utf-8">
+     var hivDiscovered = (1980*365)+((1/12)*365)+1;
 $(document).ready(function() {
 
 
     //Globals
-    var hivDiscovered = (1980*365)+((1/12)*365)+1;
+   
 
 
 
@@ -231,146 +232,129 @@ $(document).ready(function() {
         return false;
     });
 
+    
+    
+    
+beforeSubmit.push(function() {
+    var submit = true;
+ //alert(submit+"1st");
+ //$("#try").append("dvsdfgsdf");
+ 
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('height.value');
+ if(value!="")
+ {
+     getField('height.error').html(height(value)).show();
+     if(height(value)!=null)
+     {
+      submit = false;   
+     }
+            
+ }
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('weight.value');
+ if(value!="")
+ {
+     getField('weight.error').html(weight(value)).show();
+      if(weight(value)!=null)
+     {
+      submit = false;   
+     }
+ }
+ 
+ });
+ 
+ 
+ 
+  
+$j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value=getValue('fpStatus.value');
+ var age = getValue('age.value');
+ if(age!=null)
+ {  
+     if(value!="")
+     {
+         getField('fpStatus.error').html(fp64(age,value)).show();
+          if(fp64(age,value)!=null)
+     {
+      submit = false;   
+     }
+     }
+     
+ }
+ 
+ //setValue('weight.value', "90");
+ 
+ });
+ 
+ 
 
-
-
-    beforeSubmit.push(function() {
-        var submit = true;
-        //alert(submit+"1st");
-        //$("#try").append("dvsdfgsdf");
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var value=getValue('height.value');
-            if(value!="")
-            {
-                getField('height.error').html(height(value)).show();
-                if(height(value)!=null)
-                {
-                    submit = false;
-                }
-
-            }
-        });
-
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var value=getValue('weight.value');
-            if(value!="")
-            {
-                getField('weight.error').html(weight(value)).show();
-                if(weight(value)!=null)
-                {
-                    submit = false;
-                }
-            }
-
-        });
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var value=getValue('fpStatus.value');
-            var age = getValue('age.value');
-            if(age!=null)
-            {
-                if(value!="")
-                {
-                    getField('fpStatus.error').html(fp64(age,value)).show();
-                    if(fp64(age,value)!=null)
-                    {
-                        submit = false;
-                    }
-                }
-
-            }
-
-            //setValue('weight.value', "90");
-
-        });
-
-
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var value = getValue('pg.value');
-            var age = getValue('age.value');
-
-            if(age!=null)
-            {
-                if(value!="")
-                {
-
-                    getField('pg.error').html(pg61(age,value)).show();
-                    if(pg61(age,value)!=null)
-                    {
-                        submit = false;
-                    }
-                }
-            }
-        });
-
-
-        $j(function() {
-
-            //setValue('weight.error',"*wrong input*");
-            var value = getValue('cd4p.value');
-            if(value!="")
-            {
-                getField('cd4p.error').html(CD4Percentage(value)).show();
-                if(CD4Percentage(value)!=null)
-                {
-                    submit = false;
-                }
-            }
-
-        });
-
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var value = getValue('cd4c.value');
-            var age = getValue('age.value');
-
-            if(value!="")
-            {
-                if(age!=null)
-                {
-                    getField('cd4c.error').html(CD4(value,age)).show();
-                    if(CD4(value,age)!=null)
-                    {
-                        submit = false;
-                    }
-                }
-
-            }
-
-        });
-
-        $j(function() {
-            //setValue('weight.error',"*wrong input*");
-            var currentVisit = getValue('currentVisit.value');
-            var next = getValue('next.value');
-
-
-
-            if(next!="")
-            {
-                if(currentVisit!="")
-                {
-
-                    getField('next.error').html(nxtvisit71(next,currentVisit)).show();
-                    if(nxtvisit71(next,currentVisit)!=null)
-                    {
-                        submit = false;
-                    }
-                }
-
-            }
-
-        });
-
-        $j(function() {
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('pg.value');
+ var age = getValue('age.value');
+ 
+ if(age!=null)
+ {
+     if(value!="")
+     {   
+         
+         getField('pg.error').html(pg61(age,value)).show();
+          if(pg61(age,value)!=null)
+     {
+      submit = false;   
+     }
+     }
+ }
+ });
+ 
+ 
+ $j(function() {
+   
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4p.value');
+ if(value!="")
+ {
+     getField('cd4p.error').html(CD4Percentage(value)).show();
+      if(CD4Percentage(value)!=null)
+     {
+      submit = false;   
+     }
+ }
+ 
+ });
+ 
+ 
+ $j(function() {
+ //setValue('weight.error',"*wrong input*");
+ var value = getValue('cd4c.value');
+ var age = getValue('age.value');
+ 
+ if(value!="")
+ {
+     if(age!=null)
+     {
+         getField('cd4c.error').html(CD4(value,age)).show();
+             if(CD4(value,age)!=null)
+     {
+      submit = false;   
+     }
+     }
+     
+ }
+ 
+ });
+ 
+ 
+ 
+ 
+ $j(function() {
             //setValue('weight.error',"*wrong input*");
             var transfer = getValue('transferInDate.value');
             var dob = getValue('dob.value');
@@ -379,15 +363,12 @@ $(document).ready(function() {
 
             if(transfer!="")
             {
-                if(dob!="")
-                {
-
                     getField('transferInDate.error').html(transferDate(transfer,dob)).show();
                     if(transferDate(transfer,dob)!=null)
                     {
                         submit = false;
                     }
-                }
+                
 
             }
 
@@ -396,22 +377,21 @@ $(document).ready(function() {
 
         $j(function() {
             //setValue('weight.error',"*wrong input*");
-            var artDate = getValue('artStartDate.value');
+            var artDateValue = getValue('artStartDate.value');
             var dob = getValue('dob.value');
 
 
 
-            if(artDate!="")
+            if(artDateValue!="")
             {
-                if(dob!="")
-                {
+                
 
-                    getField('artStartDate.error').html(artDate(artDate,dob)).show();
-                    if(artDate(artDate,dob)!=null)
+                    getField('artStartDate.error').html(artDate(artDateValue,dob)).show();
+                    if(artDate(artDateValue,dob)!=null)
                     {
                         submit = false;
                     }
-                }
+                
 
             }
 
@@ -429,13 +409,10 @@ $(document).ready(function() {
             var confirmedHivDate = getValue('confirmedHivDate.value');
             var medElligibleDate = getValue('medElligibleDate.value');
 
-
-            if(enrolledHivCareDate!="")
-            {
-                if(dob!="")
-                {
-                    if(confirmedHivDate!="")
-                    {
+                
+            
+                
+                    
 
                         //date enrolled
                         getField('confirmedHivDate.error').html(dateConfifrmedHiv(confirmedHivDate,dob,enrolledHivCareDate)).show();
@@ -460,161 +437,158 @@ $(document).ready(function() {
                                 submit = false;
                             }
                         }
-                    }
+                    
 
-                }
-
-            }
+            
 
         });
 
-
-
-
-
-
-        if(submit == false)
-        {
-            alert("Some entries have been incorectly filled\nPlease review the form and resubmit");
-
-        }
-        //alert(submit+"1ast");
-        return submit;
-    });
-
+ 
+ 
+ 
+ 
+ if(submit == false)
+ {
+     alert("Some entries have been incorectly filled\nPlease review the form and resubmit");
+    
+ }
+ //alert(submit+"1ast");
+ return submit;
 });
 
-
-
-//validation
-//date of HIV
-
-
-function convertDay(aDate)
-{
-    return aDay = Number(aDate[8]+aDate[9])-2;
-}
-
-function convertMonth(aDate)
-{
-    return aMonth = Number(aDate[5]+aDate[6])-1;
-}
-
-function convertYear(aDate)
-{
-    return aYear = Number(aDate[0]+aDate[1]+aDate[2]+aDate[3]);
-}
-
-
-/* function visitDate(id)
- {
-
- var dateToday = new Date();
-
- var content = document.getElementById(id).value;
-
-
- var day = convertDay(content);
- var month = convertMonth(content);
- var year = convertYear(content);
-
- var totalDate = day+((month/12)*365)+(year*365);
- var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+(dateToday.getDay());
+    });
 
 
 
- if(totalDate > date)
- {
-
- document.getElementById(id+"Info").style.backgroundColor = "palevioletred";
- document.getElementById(id+"Info").innerHTML="<p>visit date is after today</p>";
- return false;
- }
-
- else
- {
- document.getElementById(id+"Info").style.backgroundColor = "";
- document.getElementById(id+"Info").innerHTML="";
- }
- }*/
+    //validation
+    //date of HIV
 
 
-function height(value)
-{
-    var content = value;
-
-
-    if(30>content)
+    function convertDay(aDate)
     {
-        return "The Height in Cms is outside the Normal Range";
-    }
-    else if(content>180)
-    {
-        return "The Height in Cms is outside the Normal Range";
-    }
-    else{
-        return null;
+        return aDay = Number(aDate[8]+aDate[9])-2;
     }
 
-}
-function weight(value)
+    function convertMonth(aDate)
+    {
+        return aMonth = Number(aDate[5]+aDate[6])-1;
+    }
+
+    function convertYear(aDate)
+    {
+        return aYear = Number(aDate[0]+aDate[1]+aDate[2]+aDate[3]);
+    }
+
+
+   /* function visitDate(id)
+    {
+
+        var dateToday = new Date();
+
+        var content = document.getElementById(id).value;
+
+
+        var day = convertDay(content);
+        var month = convertMonth(content);
+        var year = convertYear(content);
+
+        var totalDate = day+((month/12)*365)+(year*365);
+        var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+(dateToday.getDay());
+
+
+
+        if(totalDate > date)
+        {
+
+            document.getElementById(id+"Info").style.backgroundColor = "palevioletred";
+            document.getElementById(id+"Info").innerHTML="<p>visit date is after today</p>";
+            return false;
+        }
+
+        else
+        {
+            document.getElementById(id+"Info").style.backgroundColor = "";
+            document.getElementById(id+"Info").innerHTML="";
+        }
+    }*/
+
+
+    function height(value)
+    {
+        var content = value;
+    
+      
+        if(30>content)
+        {
+            return "The Height in Cms is outside the Normal Range";
+        }
+        else if(content>180)
+        {
+            return "The Height in Cms is outside the Normal Range";
+        }
+          else{
+            return null;
+        }
+    
+    }
+    function weight(value)
 {
     var content = value;
 
     if(3>content)
     {
-
+       
         return "The Weight in Kgs is outside the Normal Range";
     }
-    else if(content>150)
-    {
-        return "The Weight in Kgs is outside the Normal Range";
-    }
-    else{
-        return null;
-    }
+      else if(content>150)
+        {
+            return "The Weight in Kgs is outside the Normal Range";
+        }
+        else{
+            return null;
+        }
 }
 //how to to get age
 function fp64(value,fpstatus)
-{
-    var age = value;
+ {
+      var age = value;
+     
 
 
-
-    if(age&lt;15)
+         if(age&lt;15)
     {
         if(fpstatus==="true")
         {
-
-            return "Is this Child on Family Planning?";
+                
+                return "Is this Child on Family Planning?";
         }
-
+        
     }
-    else{
-        return null;
-    }
-}
+        else{
+            return null;
+        }
+ }
 
 function pg61(value,pgstatus)
-{
-    var age = value;
-
-    if(age&lt;15)
+ {
+      var age = value;
+      
+     if(age&lt;15)
     {
         if(pgstatus==="1065")
         {
-
-            return "Is this Child Pregnant?";
+                
+                return "Is this Child Pregnant?";
         }
-
+        
     }
-    else{
-        return null;
-    }
-}
-
-
-function CD4Percentage(CD4Perc)
+        else{
+            return null;
+        }
+ }
+ 
+ 
+ function CD4Percentage(CD4Perc)
 {
     if(CD4Perc>100)
     {
@@ -630,9 +604,9 @@ function CD4Percentage(CD4Perc)
     {
         return"CD4 Percentage is below Zero";
     }
-    else{
-        return null;
-    }
+        else{
+            return null;
+        }
 
 }
 
@@ -666,33 +640,35 @@ function CD4(CD4value,age)
         return "CD4 is below Zero";
     }
     else{
-        return null;
-    }
+            return null;
+        }
 }
 
 
 function nxtvisit71(visit,currvisit)
-{
-
-
+ {
+     
+    
     var day = convertDay(visit);
     var month = convertMonth(visit);
     var year = convertYear(visit);
-
+    
     var day1 = convertDay(currvisit);
     var month1 = convertMonth(currvisit);
     var year1 = convertYear(currvisit);
-
+    
     var visit = day+((month/12)*365)+(year*365);
     var currvisit=day1+((month1/12)*365)+(year1*365);
-    if(visit &lt; currvisit)
+         if(visit &lt; currvisit)
     {
         return "The next Visit Date is before the current Visit Date";
     }
-    else{
-        return null;
-    }
-}
+        else{
+            return null;
+        }
+ }
+    
+   
 
 
 
@@ -714,8 +690,7 @@ function transferDate(transfer,dob)
     var DoB = day+((month/12)*365)+(year*365);//date of birth
 
 
-    alert(transfer);
-    alert(dob);
+    
     if(DoB>transferDate)
     {
         return "The Transfer Date is before the Date of Birth";
@@ -753,17 +728,21 @@ function artDate(art,dob)
 
     var DoB = day+((month/12)*365)+(year*365);//date of birth
 
-    if(DoB>artDate)
+
+    if(hivDiscovered>artDate)
+    {
+        return "Date Started ART is before the HIV case was Discovered";
+    }
+
+
+    else if(DoB>artDate)
     {
         return "Date Started ART is before the Date of Birth";
     }
 
 
 //checking that art date is not before discovery of hiv
-    else if(hivDiscovered>artDate)
-    {
-        return "Date Started ART is before the HIV case was Discovered";
-    }
+    
 
     else
     {
@@ -796,17 +775,16 @@ function dateEnrolledInHiv(dateEnrolled,dob,dateConfirmedPositive)
 
     dateConfirmedPositive = day+((month/12)*365)+(year*365);//date confirmed positive
 
-    //if date enrolled is before date of birth
-    if(DoB>enrolledDate)
-    {
-        return "Date Enrolled in HIV Care is before Date of Birth";
-    }
-
-
     //checking that enrolled date is not before discovery of hiv
-    else if(hivDiscovered>enrolledDate)
+    if(hivDiscovered>enrolledDate)
     {
         return "Date Enrolled in HIV Care is before the HIV case was Discovered";
+    }
+    
+    //if date enrolled is before date of birth
+    else if(DoB>enrolledDate)
+    {
+        return "Date Enrolled in HIV Care is before Date of Birth";
     }
 
     //checking that enrolled date is not before they were discovered hiv positive
@@ -902,8 +880,16 @@ function artEligibility(artElligible,dob,dateConfirmedPositive,dateEnrolled)
 
     dateEnrolled = day+((month/12)*365)+(year*365);//date enrolled
 
+
+//checking it isn't before hiv was discovered
+    if(hivDiscovered>artEligibilityDate)
+    {
+        
+        return "ART Eligibility Date is before the HIV case was Discovered";
+    }
+
     //checking that isn't before date of birth
-    if(DoB>artEligibilityDate)
+    else if(DoB>artEligibilityDate)
     {
         return "ART Eligibility Date is before the Date of Birth";
     }
@@ -920,17 +906,15 @@ function artEligibility(artElligible,dob,dateConfirmedPositive,dateEnrolled)
         return "ART Eligibility Date is before date Enrolled in HIV Care";
     }
 
-    //checking it isn't before hiv was discovered
-    else if(hivDiscovered>artEligibilityDate)
-    {
-        return "ART Eligibility Date is before the HIV case was Discovered";
-    }
+    
 
     else
     {
         return null;
     }
 }
+
+
 
 
 
@@ -1010,6 +994,9 @@ INITIAL AND FOLLOW UP VISIT">
         <ul class="tabs_art_button">
             <li><a href="#art_hist"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update" onClick="addPatienProfile();">
                 <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+
+
+
         </ul>
     </section>
 </div>
