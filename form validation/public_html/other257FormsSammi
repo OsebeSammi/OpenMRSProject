@@ -1,0 +1,1329 @@
+<htmlform>
+
+<macros>
+    paperFormId = (Fill this in)
+    headerColor =#c0c0c0
+    sectionHeader =#000000
+    fontOnHeaderColor = white
+</macros>
+<style>
+    table.display {
+        background-color: #ddecf5;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 5px solid #ddecf5;
+        -moz-box-shadow: 0 2px 3px #777777;
+        -webkit-box-shadow: 0 2px 3px #777777;
+        margin-top:10px;
+        margin-bottom:20px;
+        font-size:11px;
+        clear:both;
+
+    }
+    .maincopy
+    {
+        font-family: verdana,arial, halvetica;
+        font-size:11px;
+        text-decoration: none;
+        font-weight: normal;
+        text-style: none;
+        line-height: 15px;
+        font-style: normal;
+        font-weight:normal;
+    }
+    .section {
+        border: 1px solid $headerColor;
+        padding: 2px;
+        text-align: left;
+        margin-bottom: 1em;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    //color:#000000
+
+        }
+    .sectionHeader {
+        background-color: $headerColor;
+        color:  $sectionHeader;
+        display:block;
+        padding: 2px;
+        position:relative;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-weight: bold;
+        text-align: center;
+        height: 30px;
+    }
+
+    table.baseline-aligne tr td.ki {
+        vertical-align: baseline;
+        position: relative;
+        margin-left: 12px;
+
+    }
+    table.baseline-aligned td.label{
+        color: brown;
+    }
+
+        /*TAB*/
+
+    ul.tabs {
+        margin: 0;
+        padding: 0;
+        float: left;
+        list-style: none;
+        height: 32px; /*--Set height of tabs--*/
+        border-bottom: 1px solid #999;
+        border-left: 1px solid #999;
+        width: 100%;
+    }
+    ul.tabs li {
+        float: left;
+        margin: 0;
+        padding: 0;
+        height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+        line-height: 31px; /*--Vertically aligns the text within the tab--*/
+        border: 1px solid #999;
+        border-left: none;
+        margin-bottom: -1px; /*--Pull the list item down 1px--*/
+        overflow: hidden;
+        position: relative;
+        background: #e0e0e0;
+    }
+    ul.tabs li a {
+        text-decoration: none;
+        color: #000;
+        display: block;
+        font-size: 1.2em;
+        padding: 0 20px;
+        border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+        outline: none;
+    }
+    ul.tabs li a:hover {
+        background: #ccc;
+    }
+    html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+        background: #fff;
+        border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+    }
+
+    .tab_container {
+        border: 1px solid #999;
+        border-top: none;
+        overflow: hidden;
+        clear: both;
+        /* float: left; width: 100%;*/
+        background: #fff;
+    }
+    .tab_content {
+        padding: 20px;
+        font-size: 1.2em;
+    }
+
+    .textalign_right
+    {
+        text-align:right;
+        font-weight:bold;
+        color: #C60;
+        padding-right:25px;
+        font-size:11px;
+    }
+
+
+</style>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+
+
+    //Globals
+    var hivDiscovered = (1980*365)+((1/12)*365)+1;
+
+
+
+
+    //When page loads...
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+
+    //On Click Event
+    $("ul.tabs li").click(function() {
+        $("ul.tabs li").removeClass("active"); //Remove any "active" class
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+/////////////////////////////////////TAB 2 ACTIVE///////////////////////////////////
+
+
+    $("ul.tabs_art_button li").click(function() {
+        $("ul.tabs li:first").removeClass("active"); //Remove any "active" class
+        $("ul.tabs li:eq(1)").addClass("active").show(); //Activate second tab
+        $(".tab_content:eq(1)").show(); //Show second tab content
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+    /////////////////////////////////////TAB 3 ACTIVE///////////////////////////////////
+
+
+    $("ul.tabs_hivstatus_button li").click(function() {
+        $("ul.tabs li:eq(1)").removeClass("active"); //Remove any "active" class
+        $("ul.tabs li:eq(2)").addClass("active").show(); //Activate second tab
+        $(".tab_content:eq(2)").show(); //Show second tab content
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+/////////////////////////////////////TAB 4 ACTIVE///////////////////////////////////
+
+
+    $("ul.tabs_arv_therapy_button li").click(function() {
+        $("ul.tabs li:eq(2)").removeClass("active"); //Remove any "active" class
+        $("ul.tabs li:eq(3)").addClass("active").show(); //Activate second tab
+        $(".tab_content:eq(3)").show(); //Show second tab content
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+    /////////////////////////////////////TAB 5 ACTIVE///////////////////////////////////
+
+
+    $("ul.tabs_transferDeath_button li").click(function() {
+        $("ul.tabs li:eq(3)").removeClass("active"); //Remove any "active" class
+        $("ul.tabs li:eq(4)").addClass("active").show(); //Activate second tab
+        $(".tab_content:eq(4)").show(); //Show second tab content
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+    /////////////////////////////////////TAB 6 ACTIVE///////////////////////////////////
+    $("ul.tabs_art_interruption_button li").click(function() {
+        $("ul.tabs li:eq(4)").removeClass("active"); //Remove any "active" class
+        $("ul.tabs li:eq(5)").addClass("active").show(); //Activate second tab
+        $(".tab_content:eq(5)").show(); //Show second tab content
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+    });
+
+
+
+
+    beforeSubmit.push(function() {
+        var submit = true;
+        //alert(submit+"1st");
+        //$("#try").append("dvsdfgsdf");
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var value=getValue('height.value');
+            if(value!="")
+            {
+                getField('height.error').html(height(value)).show();
+                if(height(value)!=null)
+                {
+                    submit = false;
+                }
+
+            }
+        });
+
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var value=getValue('weight.value');
+            if(value!="")
+            {
+                getField('weight.error').html(weight(value)).show();
+                if(weight(value)!=null)
+                {
+                    submit = false;
+                }
+            }
+
+        });
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var value=getValue('fpStatus.value');
+            var age = getValue('age.value');
+            if(age!=null)
+            {
+                if(value!="")
+                {
+                    getField('fpStatus.error').html(fp64(age,value)).show();
+                    if(fp64(age,value)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+
+            }
+
+            //setValue('weight.value', "90");
+
+        });
+
+
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var value = getValue('pg.value');
+            var age = getValue('age.value');
+
+            if(age!=null)
+            {
+                if(value!="")
+                {
+
+                    getField('pg.error').html(pg61(age,value)).show();
+                    if(pg61(age,value)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+            }
+        });
+
+
+        $j(function() {
+
+            //setValue('weight.error',"*wrong input*");
+            var value = getValue('cd4p.value');
+            if(value!="")
+            {
+                getField('cd4p.error').html(CD4Percentage(value)).show();
+                if(CD4Percentage(value)!=null)
+                {
+                    submit = false;
+                }
+            }
+
+        });
+
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var value = getValue('cd4c.value');
+            var age = getValue('age.value');
+
+            if(value!="")
+            {
+                if(age!=null)
+                {
+                    getField('cd4c.error').html(CD4(value,age)).show();
+                    if(CD4(value,age)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+
+            }
+
+        });
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var currentVisit = getValue('currentVisit.value');
+            var next = getValue('next.value');
+
+
+
+            if(next!="")
+            {
+                if(currentVisit!="")
+                {
+
+                    getField('next.error').html(nxtvisit71(next,currentVisit)).show();
+                    if(nxtvisit71(next,currentVisit)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+
+            }
+
+        });
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var transfer = getValue('transferInDate.value');
+            var dob = getValue('dob.value');
+
+
+
+            if(transfer!="")
+            {
+                if(dob!="")
+                {
+
+                    getField('transferInDate.error').html(transferDate(transfer,dob)).show();
+                    if(transferDate(transfer,dob)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+
+            }
+
+        });
+
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var artDate = getValue('artStartDate.value');
+            var dob = getValue('dob.value');
+
+
+
+            if(artDate!="")
+            {
+                if(dob!="")
+                {
+
+                    getField('artStartDate.error').html(artDate(artDate,dob)).show();
+                    if(artDate(artDate,dob)!=null)
+                    {
+                        submit = false;
+                    }
+                }
+
+            }
+
+        });
+
+
+
+
+
+
+        $j(function() {
+            //setValue('weight.error',"*wrong input*");
+            var enrolledHivCareDate = getValue('enrolledHivCareDate.value');
+            var dob = getValue('dob.value');
+            var confirmedHivDate = getValue('confirmedHivDate.value');
+            var medElligibleDate = getValue('medElligibleDate.value');
+
+
+            if(enrolledHivCareDate!="")
+            {
+                if(dob!="")
+                {
+                    if(confirmedHivDate!="")
+                    {
+
+                        //date enrolled
+                        getField('confirmedHivDate.error').html(dateConfifrmedHiv(confirmedHivDate,dob,enrolledHivCareDate)).show();
+                        if(dateConfifrmedHiv(confirmedHivDate,dob,enrolledHivCareDate)!=null)
+                        {
+                            submit = false;
+                        }
+
+                        //date confirmed hiv +ve
+                        getField('enrolledHivCareDate.error').html(dateEnrolledInHiv(enrolledHivCareDate,dob,confirmedHivDate)).show();
+                        if(dateEnrolledInHiv(enrolledHivCareDate,dob,confirmedHivDate)!=null)
+                        {
+                            submit = false;
+                        }
+
+                        //elligible date
+                        if(medElligibleDate!="")
+                        {
+                            getField('medElligibleDate.error').html(artEligibility(medElligibleDate,dob,confirmedHivDate,enrolledHivCareDate)).show();
+                            if(artEligibility(medElligibleDate,dob,confirmedHivDate,enrolledHivCareDate)!=null)
+                            {
+                                submit = false;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+
+
+
+
+
+
+        if(submit == false)
+        {
+            alert("Some entries have been incorectly filled\nPlease review the form and resubmit");
+
+        }
+        //alert(submit+"1ast");
+        return submit;
+    });
+
+});
+
+
+
+//validation
+//date of HIV
+
+
+function convertDay(aDate)
+{
+    return aDay = Number(aDate[8]+aDate[9])-2;
+}
+
+function convertMonth(aDate)
+{
+    return aMonth = Number(aDate[5]+aDate[6])-1;
+}
+
+function convertYear(aDate)
+{
+    return aYear = Number(aDate[0]+aDate[1]+aDate[2]+aDate[3]);
+}
+
+
+/* function visitDate(id)
+ {
+
+ var dateToday = new Date();
+
+ var content = document.getElementById(id).value;
+
+
+ var day = convertDay(content);
+ var month = convertMonth(content);
+ var year = convertYear(content);
+
+ var totalDate = day+((month/12)*365)+(year*365);
+ var date = (dateToday.getFullYear()*365)+((dateToday.getMonth()/12)*365)+(dateToday.getDay());
+
+
+
+ if(totalDate > date)
+ {
+
+ document.getElementById(id+"Info").style.backgroundColor = "palevioletred";
+ document.getElementById(id+"Info").innerHTML="<p>visit date is after today</p>";
+ return false;
+ }
+
+ else
+ {
+ document.getElementById(id+"Info").style.backgroundColor = "";
+ document.getElementById(id+"Info").innerHTML="";
+ }
+ }*/
+
+
+function height(value)
+{
+    var content = value;
+
+
+    if(30>content)
+    {
+        return "The Height in Cms is outside the Normal Range";
+    }
+    else if(content>180)
+    {
+        return "The Height in Cms is outside the Normal Range";
+    }
+    else{
+        return null;
+    }
+
+}
+function weight(value)
+{
+    var content = value;
+
+    if(3>content)
+    {
+
+        return "The Weight in Kgs is outside the Normal Range";
+    }
+    else if(content>150)
+    {
+        return "The Weight in Kgs is outside the Normal Range";
+    }
+    else{
+        return null;
+    }
+}
+//how to to get age
+function fp64(value,fpstatus)
+{
+    var age = value;
+
+
+
+    if(age&lt;15)
+    {
+        if(fpstatus==="true")
+        {
+
+            return "Is this Child on Family Planning?";
+        }
+
+    }
+    else{
+        return null;
+    }
+}
+
+function pg61(value,pgstatus)
+{
+    var age = value;
+
+    if(age&lt;15)
+    {
+        if(pgstatus==="1065")
+        {
+
+            return "Is this Child Pregnant?";
+        }
+
+    }
+    else{
+        return null;
+    }
+}
+
+
+function CD4Percentage(CD4Perc)
+{
+    if(CD4Perc>100)
+    {
+        return"CD4 Percentage is above 100%";
+    }
+
+    else if(CD4Perc>24)
+    {
+        return"The CD4 Percentage is greater than the required % for Starting ARVs (24%)";
+    }
+
+    else if(0>CD4Perc)
+    {
+        return"CD4 Percentage is below Zero";
+    }
+    else{
+        return null;
+    }
+
+}
+
+
+
+function CD4(CD4value,age)
+{
+
+    //ask about the specifications step 27
+
+    if(CD4value>7000)
+    {
+        if(13>age)
+        {
+            return "CD4 is above Normal for a Patient below 13 Years";
+        }
+
+    }
+
+    else if(CD4value>1500)
+    {
+        if(age>12)
+        {
+            return "CD4 is above Normal for a Patient above 12 Years";
+        }
+
+    }
+
+    else if(0>CD4value)
+    {
+        return "CD4 is below Zero";
+    }
+    else{
+        return null;
+    }
+}
+
+
+function nxtvisit71(visit,currvisit)
+{
+
+
+    var day = convertDay(visit);
+    var month = convertMonth(visit);
+    var year = convertYear(visit);
+
+    var day1 = convertDay(currvisit);
+    var month1 = convertMonth(currvisit);
+    var year1 = convertYear(currvisit);
+
+    var visit = day+((month/12)*365)+(year*365);
+    var currvisit=day1+((month1/12)*365)+(year1*365);
+    if(visit &lt; currvisit)
+    {
+        return "The next Visit Date is before the current Visit Date";
+    }
+    else{
+        return null;
+    }
+}
+
+
+
+function transferDate(transfer,dob)
+{
+    var content = transfer;
+
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var transferDate = day+((month/12)*365)+(year*365);//transfer date
+
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+
+    alert(transfer);
+    alert(dob);
+    if(DoB>transferDate)
+    {
+        return "The Transfer Date is before the Date of Birth";
+    }
+
+
+    //later than date HIV was discovered
+    else if(hivDiscovered>transferDate)
+    {
+
+        return "The Transfer Date is before the HIV case was Discovered";
+    }
+
+    else
+    {
+        return null;
+    }
+}
+
+
+function artDate(art,dob)
+{
+    //checking that date started ART is after dob
+    var content = art;//art date
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var artDate = day+((month/12)*365)+(year*365);//ART date
+
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+    if(DoB>artDate)
+    {
+        return "Date Started ART is before the Date of Birth";
+    }
+
+
+//checking that art date is not before discovery of hiv
+    else if(hivDiscovered>artDate)
+    {
+        return "Date Started ART is before the HIV case was Discovered";
+    }
+
+    else
+    {
+        return null;
+    }
+}
+
+
+
+function dateEnrolledInHiv(dateEnrolled,dob,dateConfirmedPositive)
+{
+    //checking that date started ART is after dob
+    var content = dateEnrolled;//enrolled date
+
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var enrolledDate = day+((month/12)*365)+(year*365);//enrolled date
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+    day = convertDay(dateConfirmedPositive);
+    month = convertMonth(dateConfirmedPositive);
+    year = convertYear(dateConfirmedPositive);
+
+    dateConfirmedPositive = day+((month/12)*365)+(year*365);//date confirmed positive
+
+    //if date enrolled is before date of birth
+    if(DoB>enrolledDate)
+    {
+        return "Date Enrolled in HIV Care is before Date of Birth";
+    }
+
+
+    //checking that enrolled date is not before discovery of hiv
+    else if(hivDiscovered>enrolledDate)
+    {
+        return "Date Enrolled in HIV Care is before the HIV case was Discovered";
+    }
+
+    //checking that enrolled date is not before they were discovered hiv positive
+    else if(dateConfirmedPositive>enrolledDate)
+    {
+        return "Date Enrolled in HIV Care is before Date Confirmed HIV+";
+    }
+
+    else
+    {
+        return null;
+    }
+}
+
+
+
+
+
+function dateConfifrmedHiv(dateConfirmedPositive,dob,dateEnrolled)
+{
+    //checking that date started ART is after dob
+    var content = dateConfirmedPositive;//date confirmed +ve
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var dateConfirmedPositive = day+((month/12)*365)+(year*365);//date confirmed +ve
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+    day = convertDay(dateEnrolled);
+    month = convertMonth(dateEnrolled);
+    year = convertYear(dateEnrolled);
+
+    dateEnrolled = day+((month/12)*365)+(year*365);//date of birth
+
+    //checking that date confirmed positive is after date of birth
+    if(DoB>dateConfirmedPositive)
+    {
+        return "Date Confirmed HIV+ is before Date of Birth";
+    }
+    //checking the enrolled date is after date confirmed positive
+    else if(dateConfirmedPositive>dateEnrolled)
+    {
+        return "Date Confirmed HIV+ is after date Enrolled in HIV Care";
+    }
+
+
+    //checking that date is not before discovery of hiv
+    else if(hivDiscovered>dateConfirmedPositive)
+    {
+        return "Date Confirmed HIV+ is before the HIV Cases were Discovered";
+    }
+
+    else
+    {
+        return null;
+    }
+}
+
+
+
+
+function artEligibility(artElligible,dob,dateConfirmedPositive,dateEnrolled)
+{
+    var content = artElligible;//ART eligibility date
+
+    var day = convertDay(content);
+    var month = convertMonth(content);
+    var year = convertYear(content);
+
+    var artEligibilityDate = day+((month/12)*365)+(year*365);//eligible date
+
+    day = convertDay(dob);
+    month = convertMonth(dob);
+    year = convertYear(dob);
+
+    var DoB = day+((month/12)*365)+(year*365);//date of birth
+
+    day = convertDay(dateConfirmedPositive);
+    month = convertMonth(dateConfirmedPositive);
+    year = convertYear(dateConfirmedPositive);
+
+    dateConfirmedPositive = day+((month/12)*365)+(year*365);//date confirmed positive
+
+    day = convertDay(dateEnrolled);
+    month = convertMonth(dateEnrolled);
+    year = convertYear(dateEnrolled);
+
+    dateEnrolled = day+((month/12)*365)+(year*365);//date enrolled
+
+    //checking that isn't before date of birth
+    if(DoB>artEligibilityDate)
+    {
+        return "ART Eligibility Date is before the Date of Birth";
+    }
+
+    //checking that it isnt before date confirmed positive
+    else if(dateConfirmedPositive>artEligibilityDate)
+    {
+        return "ART Eligibility Date is before Date Confirmed HIV+";
+    }
+
+    //checking it isnt before enrolled date
+    else if(dateEnrolled>artEligibilityDate)
+    {
+        return "ART Eligibility Date is before date Enrolled in HIV Care";
+    }
+
+    //checking it isn't before hiv was discovered
+    else if(hivDiscovered>artEligibilityDate)
+    {
+        return "ART Eligibility Date is before the HIV case was Discovered";
+    }
+
+    else
+    {
+        return null;
+    }
+}
+
+
+
+
+</script>
+<ul class="tabs maincopy">
+    <li><a href="#patient_source">Patient Source</a></li>
+    <li><a href="#art_hist">ART History</a></li>
+    <li><a href="#hiv_status">HIV Status</a></li>
+    <li><a href="#arv_therapy">ARV Therapy</a></li>
+    <li><a href="#transfer_death">Transfer Out and Death</a></li>
+    <li><a href="#art_treat_interruption">ART Treatment Interruptions</a></li>
+</ul>
+
+<div class="tab_container">
+<fieldset>
+    <legend><strong>Encounter Details</strong></legend>
+    <table width="100%" border="0" align="center">
+        <tr>
+            <td width="11%" class="textalign_right">Encounter Date:</td>
+            <td width="17%"><encounterDate/></td>
+            <td width="19%" class="textalign_right">Encounter Location:</td>
+            <td width="17%"><encounterLocation/></td>
+            <td width="18%" class="textalign_right">Encounter Provider:</td>
+            <td width="18%"><encounterProvider/></td>
+        </tr>
+    </table>
+</fieldset>
+<br/>
+<!-- TAB TWO FORM HERE-->
+<div id="patient_source" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+INITIAL AND FOLLOW UP VISIT">
+        <fieldset>
+            <legend><strong>Patient Source</strong></legend>
+            <table width="100%" class="maincopy">
+                <tr>
+                    <td width="200" class="textalign_right">Entry Point:</td>
+                    <td width="255">
+                        <obs conceptId="160540"></obs>
+                    </td>
+                    <td width="277" class="textalign_right">if other specify: </td>
+                    <td width="328">
+                        <input/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Transfer in</strong></td>
+                    <td><div align="right"><strong>From</strong></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="textalign_right">Date:</td>
+                    <td>
+                        <obs id="transferInDate" conceptId="160534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"></obs>
+                    </td>
+                    <td class="textalign_right">District:</td>
+                    <td>
+                        <obs conceptId="161551"></obs>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="textalign_right">Facility:</td>
+                    <td>
+                        <obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"></obs>
+                    </td>
+                    <td class="textalign_right">
+                        Date started ART:
+                    </td>
+                    <td>
+                        <obs id="artStartDate" conceptId="159599"></obs>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <ul class="tabs_art_button">
+            <li><a href="#art_hist"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update" onClick="addPatienProfile();">
+                <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+        </ul>
+    </section>
+</div>
+
+<!-- TAB THREE FORM HERE-->
+<div id="art_hist" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+                  INITIAL AND FOLLOW UP VISIT">
+        <fieldset>
+            <legend><b>ART History</b></legend>
+            <table width="100%" align="center" class="maincopy">
+                <tr>
+                    <td class="label">
+                        <strong>Previously on ARVs (PMTC and PEP included)? </strong></td>
+                    <td style="text-align: left">
+                        <obs conceptId="160533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="no_yes_dropdown"></obs>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>If "Yes" then List Drugs</td>
+                </tr>
+            </table>
+            <table width="100%" align="center" style="background: #dffff5;padding-bottom: 2%;" class="maincopy">
+                <tr>
+                    <td class="label" style="color: #00a0ff;">
+                        # 	Purpose
+                    </td>
+                    <td class="label" style="color: #00a0ff;">
+                        Drug Name
+                    </td>
+                    <td class="label" style="color: #00a0ff;">
+                        Date Last Used
+                    </td>
+                </tr>
+                <tr><td colspan="4"><hr/></td></tr>
+                <tr>
+                    <td>
+                        <input/>
+                    </td>
+                    <td>
+                        <obs conceptId="1088"></obs>
+                    </td>
+                    <td>
+                        <input/>
+                    </td>
+                    <td><button type="button" class="updatebutton" id="prevARVbutton" name="update" value="update" onClick="addARThistory();">
+                        <img  src="../../images/icons/add.png" alt="" width="14" height="16"/> Add More</button></td>
+                </tr>
+            </table>
+
+            <table width="100%" align="center" class="maincopy">
+                <tr>
+                    <td class="textalign_right">Date confirmed HIV+</td>
+                    <td>
+                        <obs id="confirmedHivDate" conceptId="160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"></obs>
+                    </td>
+                    <td class="textalign_right">Where?</td>
+                    <td>
+                        <obs conceptId="159936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"></obs>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="textalign_right">Date enrolled in HIV Care?</td>
+                    <td>
+                        <obs id="enrolledHivCareDate" conceptId="160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"></obs>
+                    </td>
+                    <td class="textalign_right">WHO Stage:</td>
+                    <td>
+                        <obs conceptId="160553"></obs>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="textalign_right">Any known Drug Allergies?</td>
+                    <td>
+                        <input/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+    </section>
+    <ul class="tabs_hivstatus_button">
+        <li><a href="#hiv_status"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update">
+            <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+    </ul>
+</div>
+
+<!-- TAB FOUR FORM HERE-->
+<div id="hiv_status" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+INITIAL AND FOLLOW UP VISIT">
+        <fieldset>
+            <legend><strong>Hiv Status of Family Members</strong></legend>
+            <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="display maincopy">
+
+
+                <th width="18%">Name of Member</th>
+                <th width="16%">Age</th>
+                <th width="25%">Relation</th>
+                <th width="17%">HIV(P/NDK)</th>
+                <th width="13%">In care?</th>
+                <th width="11%">CC No</th>
+                <tr>
+                    <td><obs conceptId="160750"/></td>
+                    <td><obs id="dob" conceptId="160751"/></td>
+                    <td><obs conceptId="1560"/></td>
+                    <td><obs conceptId="1169"/></td>
+                    <td><obs conceptId="160749" /></td>
+                    <td><obs conceptId="160752"/></td>
+                </tr>
+            </table><br/>
+        </fieldset>
+    </section>
+    <ul class="tabs_arv_therapy_button">
+        <li><a href="#arv_therapy"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update">
+            <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+    </ul>
+</div>
+
+<!-- TAB FIVE FORM HERE-->
+<div id="arv_therapy" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+INITIAL AND FOLLOW UP VISIT">
+        <fieldset>
+            <legend ><b>ARV Therapy</b></legend>
+
+            <table width="100%" class="maincopy">
+                <tr>
+                    <td width="28%" class="textalign_right">Date Medically Elligible:</td>
+                    <td width="9%">
+                        <obs id="medElligibleDate" conceptId="162227"></obs>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="textalign_right">Eligible Through?</td>
+                    <td>
+                        <obs conceptId="162225"></obs>
+                    </td>
+                    <td width="16%" class="textalign_right"> Clinical WHO Stage </td>
+                    <td width="27%">
+                        <obs conceptId="160553"></obs>
+                    </td>
+                    <td width="19%" class="textalign_right"> CD4 Count(%) </td>
+                    <td width="1%">
+                        <obs id="cd4p" conceptId="5497"></obs>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="textalign_right">Date Started on 1st Line:</td>
+                    <td>
+                        <obs id="flineDate" conceptId="159599"></obs>
+                    </td>
+                    <td class="textalign_right">COHORT</td>
+                    <td>
+                        <input/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="textalign_right">Regimen:</td>
+                    <td>
+                        <obs conceptId="162240"></obs>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="textalign_right" style="color:black;"><b>At Start of ART:</b></td>
+                </tr>
+
+                <tr>
+                    <td class="textalign_right">Weight (Kgs):</td>
+                    <td>
+                        <obs id="weight" conceptId="5089"></obs>
+                    </td>
+                    <td class="textalign_right">Height (cms):</td>
+                    <td>
+                        <obs id="height" conceptId="5090"></obs>
+                    </td>
+                </tr>
+
+                <td class="textalign_right">BMI (Adults):</td>
+                <td>
+                    <obs conceptId="1342"></obs>
+                </td>
+                <td class="textalign_right">WHO Stage:</td>
+                <td>
+                    <obs id="who" conceptId="5356"></obs>
+                </td>
+
+            </table>
+
+
+            <span class="label"><em>Substitution of ARVs within 1st Line Regimens</em></span>
+            <table width="80%" align="center" class="display maincopy">
+                <th width="19%">Dates</th>
+                <th width="30%">Regimens</th>
+                <th width="29%">Reason(s)</th>
+
+                <th width="22%"></th>
+
+                <tr>
+                    <td><obs id="dateFLineReg" conceptId="159599"/></td>
+                    <td><obs conceptId="162240"/></td>
+                    <td><obs conceptId="160562"/></td>
+
+                    <td><button type="button" class="updatebutton" id="secondlinearv" name="secondlinearv" value="update">
+                        <img  src="../../images/icons/add.png" alt="" width="14" height="16"/> Add More</button></td>
+
+                </tr>
+            </table>
+            <span class="label"><em>Switch to 2nd Line (Substitute within 2nd Line)</em></span>
+            <table width="80%" align="center" class="display maincopy">
+
+
+                <th width="19%">Dates</th>
+                <th width="30%">Regimens</th>
+                <th width="29%">Reason(s)</th>
+
+                <th width="22%"></th>
+
+                <tr>
+                    <td><obs id="dateSLineReg" conceptId="159599"/></td>
+                    <td><obs conceptId="162240"/></td>
+                    <td><obs conceptId="160568"/></td>
+                    <td><button type="button" class="updatebutton" id="secondlinearv" name="secondlinearv" value="update">
+                        <img  src="../../images/icons/add.png" alt="" width="14" height="16"/> Add More</button></td>
+                </tr>
+            </table>
+            <ul class="tabs_transferDeath_button">
+                <li><a href="#transfer_death"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update">
+                    <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+            </ul>
+        </fieldset>
+    </section>
+</div>
+
+<!-- TAB SIX FORM HERE-->
+<div id="transfer_death" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+INITIAL AND FOLLOW UP VISIT">
+        <fieldset>
+            <legend><strong>Transfer Out</strong></legend>
+            <table width="100%" class="display maincopy">
+
+
+                <th>*Date</th>
+
+                <th>Where</th>
+                <th>Reason</th>
+                <tr>
+                    <td><obs id="transferOutDate" conceptId="160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></td>
+                    <td><obs conceptId="159495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></td>
+                    <td><input/></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend><strong>Death</strong></legend>
+            <table width="100%" class="display maincopy">
+
+
+                <th width="19%">*Date</th>
+
+                <th width="81%">Why</th>
+
+                <tr>
+                    <td><obs id="deathDate" conceptId="1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></td>
+                    <td><input /></td> <!-- reason why he/she died-->
+
+                </tr>
+            </table>
+            <ul class="tabs_art_interruption_button">
+                <li><a href="#art_treat_interruption"><center><button type="submit" class="text ui-widget-content ui-corner-all" id="add_patientProfile" name="update" value="update">
+                    <img class="button_img" src="../../images/icons/tick.png" alt="" width="14" height="16"/> NEXT </button></center></a></li>
+            </ul>
+        </fieldset>
+    </section>
+</div>
+
+<!-- TAB SEVEN FORM HERE-->
+<div id="art_treat_interruption" class="tab_content">
+    <section headerLabel="COMPREHENSIVE CARE CLINIC PATIENT CARD - MOH 257
+INITIAL AND FOLLOW UP VISIT">
+
+        <fieldset>
+            <legend><strong>ART Treatment Interruptions</strong></legend>
+            <table width="100%" class="display maincopy">
+
+
+                <th>Date</th>
+                <th>Reason for Interruption</th>
+                <th>Date Restarted</th>
+
+                <th></th>
+
+                <tr>
+                    <td><obs id="dateInterrupt" conceptId="160739"/></td>
+                    <td><obs conceptId="1252"/></td>
+                    <td><obs id="restartDate" conceptId="159599"/></td>
+                </tr>
+            </table>
+            <center><submit class="submitbutt"  submitLabel="Complete And Close"/></center>
+        </fieldset>
+
+    </section>
+
+</div>
+</div>
+</htmlform>
