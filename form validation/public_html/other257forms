@@ -137,7 +137,7 @@
      var dateOfBirth;
 $(document).ready(function() {
 
-   
+   $('.patient').hide();
 
     //Globals
    
@@ -1199,9 +1199,9 @@ var day1 = convertDay( scndline);
             <td width="17%"><encounterLocation/></td>
             <td width="18%" class="textalign_right">Encounter Provider:</td>
             <td width="18%"><encounterProvider/></td>
-            <td>Patient Birth Date:</td>
-            <td style="color: brown"><patient field="birthDate" /></td>
-            <td style="color: brown"><input type="hidden" name="dob" id="dob" value=""  /></td>
+           
+            <td style="color: brown" class="patient"><patient field="birthDate" /></td>
+            <td style="color: brown" class="patient"><input type="hidden" name="dob" id="dob" value=""  /></td>
         </tr>
     </table>
 </fieldset>
