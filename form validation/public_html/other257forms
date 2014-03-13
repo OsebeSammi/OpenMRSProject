@@ -1167,6 +1167,10 @@ var day1 = convertDay( scndline);
             return "Started Second Line Regimen before First Line Regimen";
                     
         }
+         else
+    {
+        return null;
+    }
     
 }
 
